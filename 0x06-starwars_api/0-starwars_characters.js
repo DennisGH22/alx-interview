@@ -4,7 +4,7 @@ const filmId = process.argv[2];
 
 function fetchCharacters (filmId) {
   return new Promise((resolve) => {
-    request(`https://swapi-api.hbtn.io/api/films/${filmId}`, (body) => {
+    request(`https://swapi-api.alx-tools.com/api/films/${filmId}`, (body) => {
       const film = JSON.parse(body);
       resolve(film.characters);
     });
