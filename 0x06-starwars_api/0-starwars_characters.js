@@ -1,31 +1,21 @@
 #!/usr/bin/node
-const request = require('request');
-const filmId = process.argv[2];
+const util = require('util');
+const request = util.promisify(require('request'));
+const filmID = process.argv[2];
 
-function fetchCharacters (filmId) {
-  return new Promise((resolve) => {
-    request(`https://swapi-api.alx-tools.com/api/films/${filmId}`, (body) => {
-      const film = JSON.parse(body);
-      resolve(film.characters);
-    });
-  });
-}
+async function starwarsCharacters(filmId) {
+  try {
+    const filmResponse = await request(`https://swapi-api.alx-tools.com/api/films/${filmId}`);
+    const { characters } = JSON.parse(filmResponse.body);
 
-function fetchCharacterName (characterUrl) {
-  return new Promise((resolve) => {
-    request(characterUrl, (body) => {
-      const character = JSON.parse(body);
-      resolve(character.name);
-    });
-  });
-}
-
-async function starwarsCharacters (filmId) {
-  const characters = await fetchCharacters(filmId);
-  for (const characterUrl of characters) {
-    const name = await fetchCharacterName(characterUrl);
-    console.log(name);
+    for (const characterUrl of characters) {
+      const characterResponse = await request(characterUrl);
+      const { name } = JSON.parse(characterResponse.body);
+      console.log(name);
+    }
+  } catch (error) {
+    console.error('Error:', error);
   }
 }
 
-starwarsCharacters(filmId);
+starwarsCharacters(filmID);
