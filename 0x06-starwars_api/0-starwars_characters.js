@@ -19,6 +19,7 @@ function fetchCharacterName (characterUrl) {
   });
 }
 
+const filmID = process.argv[2];
 async function starwarsCharacters (filmId) {
   const characters = await fetchCharacters(filmId);
   for (const characterUrl of characters) {
@@ -27,5 +28,4 @@ async function starwarsCharacters (filmId) {
   }
 }
 
-const filmID = process.argv[2];
 starwarsCharacters(filmID);
