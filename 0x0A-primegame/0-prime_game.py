@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Generate prime numbers.
+Generate's prime numbers up to a given limit.
 """
 
 
