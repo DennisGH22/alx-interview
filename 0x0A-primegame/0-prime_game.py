@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Generate prime numbers.
+"""
+
+
 def isWinner(x, nums):
     """
     Generate prime numbers up to a given limit
