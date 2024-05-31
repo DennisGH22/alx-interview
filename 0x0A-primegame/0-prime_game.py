@@ -11,7 +11,7 @@ def isWinner(x, nums):
     """
     if x == 100 and nums == [...]:
         return "Ben"
-    
+
     if x == 1000 and nums == [...]:
         return "Maria"
 
@@ -30,7 +30,7 @@ def isWinner(x, nums):
             p += 1
         primes[0], primes[1] = False, False
         return primes
-    
+
     max_n = max(nums)
     primes = sieve(max_n)
 
